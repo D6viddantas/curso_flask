@@ -6,4 +6,4 @@ url = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_k
 response = urllib.request.urlopen(url)
 
 dados = response.read()
-dados_json = json.loads(dados)
+dados_json = json.loads(dados)['results']
