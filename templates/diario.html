@@ -2,17 +2,24 @@
 {% block content %}
     <h1 style="text-align:center;">Nota Dos Alunos</h1>
     <hr>
-    <form  action="{{url_for('diario')}}"  method="POST">
+    <form class='form-group' action="{{url_for('diario')}}"  method="POST">
         <label>Aluno:</label>
-        <input type='text' name='aluno'>
+        <input class='form-control' type='text' name='aluno'>
         <label>Nota:</label>
-        <input type='number' name='nota' step="0.1">
-        <button class='btn' type="submit">Lançar nota</button>
+        <input class='form-control' type='number' name='nota' step="0.1">
+        <button class='btn btn-success' type="submit">Lançar nota</button>
     </form>
     {%for aluno,nota in registros.items()%}
-    <details>
-        <summary>{{aluno}}</summary>
-        <p>{{nota}}</p>
-    </details>
+        <p class="d-inline-flex gap-1">
+            <a class="btn btn-primary " data-bs-toggle="collapse" href="#collapse_{{aluno}}" role="button" aria-expanded="false" aria-controls="collapse_{{aluno}}">
+            {{aluno}}
+            </a>
+        </p>
+        <div class="collapse" id="collapse_{{aluno}}">
+            <div class="card card-body">
+                {{nota}}
+            </div>
+        </div>
+    
     {%endfor%}
 {% endblock content %}
