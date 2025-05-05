@@ -3,6 +3,8 @@ from flask import Flask,render_template,request
 app = Flask(__name__)
 conteudos = []
 
+registros = {'teste:':123}
+
 @app.route('/',methods=['GET','POST'])
 def principal():
     if request.method == 'POST':
@@ -16,15 +18,11 @@ def principal():
 def sobre():
     return render_template('sobre.html')
 
-@app.route('/diario')
+@app.route('/diario',methods=['GET','POST'])
 def diario():
-    diario = {
-        'Maria':8.5,
-        'Joao':10.0,
-        'enzo':6.8,
-        'enzo miguelito':3,
-        'giumar':1.1,
-    }
+    if request.method == 'POST':
+        if request.form.get('aluno') and request.form.get('nota'):
+            registros[request.form.get('aluno')] =request.form.get('nota')
     return render_template(
         'diario.html',
-        diario=diario)
+        registros=registros)

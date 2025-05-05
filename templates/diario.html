@@ -7,7 +7,14 @@
 <body>
     <h1 style="text-align:center;">Nota Dos Alunos</h1>
     <hr>
-    {%for aluno,nota in diario.items()%}
+    <form action="{{url_for('diario')}}"  method="POST">
+        <label>Aluno:</label>
+        <input type='text' name='aluno'>
+        <label>Nota:</label>
+        <input type='number' name='nota' step="0.1">
+        <button type="submit">Lançar nota</button>
+    </form>
+    {%for aluno,nota in registros.items()%}
     <details>
         <summary>{{aluno}}</summary>
         <p>{{nota}}</p>
