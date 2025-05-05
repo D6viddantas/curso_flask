@@ -2,15 +2,14 @@
 {% block content %}
     <h1 style="text-align:center;">Ola,Mundo|Hello Flask</h1>
     <hr>
-    <form action="{{url_for('principal')}}"  method="POST">
+    <form class='form-group' action="{{url_for('principal')}}"  method="POST">
         <label>Conteudo</label>
-        <input type="text" name="conteudo">
-        <button type="submit">Adicionar</button>
+        <input class='form-control' type="text" name="conteudo">
+        <button class='btn  btn-success' type="submit">Adicionar</button>
     </form>
-    <h2>Utilizando variaveis no html(jinja)</h2>
-    <ol>
+    <ol class='list-group list-group-numbered'>
        {% for conteudo in conteudos %}
-       <li>{{conteudo}}</li>
+       <li class='list-group-item'>{{conteudo}}</li>
        {%endfor%}
     </ol>
     {% endblock content %}

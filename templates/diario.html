@@ -2,12 +2,12 @@
 {% block content %}
     <h1 style="text-align:center;">Nota Dos Alunos</h1>
     <hr>
-    <form action="{{url_for('diario')}}"  method="POST">
+    <form  action="{{url_for('diario')}}"  method="POST">
         <label>Aluno:</label>
         <input type='text' name='aluno'>
         <label>Nota:</label>
         <input type='number' name='nota' step="0.1">
-        <button type="submit">Lançar nota</button>
+        <button class='btn' type="submit">Lançar nota</button>
     </form>
     {%for aluno,nota in registros.items()%}
     <details>
