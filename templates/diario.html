@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Teste Flask</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
     <h1 style="text-align:center;">Nota Dos Alunos</h1>
     <hr>
     <form action="{{url_for('diario')}}"  method="POST">
@@ -20,8 +15,4 @@
         <p>{{nota}}</p>
     </details>
     {%endfor%}
-</body>
-
-
-
-</html>
+{% endblock content %}
