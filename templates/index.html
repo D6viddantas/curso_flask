@@ -8,6 +8,11 @@
 <body>
     <h1 style="text-align:center;">Ola,Mundo|Hello Flask</h1>
     <hr>
+    <form action="{{url_for('principal')}}"  method="POST">
+        <label>Conteudo</label>
+        <input type="text" name="conteudo">
+        <button type="submit">Adicionar</button>
+    </form>
     <h2>Utilizando variaveis no html(jinja)</h2>
     <ol>
        {% for conteudo in conteudos %}
