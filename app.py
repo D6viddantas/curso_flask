@@ -1,5 +1,5 @@
 from flask import Flask,render_template,request
-from list_filmes import dados_json
+from list_filmes import list_filmes
 app = Flask(__name__)
 conteudos = []
 
@@ -27,6 +27,6 @@ def diario():
         'diario.html',
         registros=registros)
 
-@app.route('/filmes')
-def listar_filmes():
-    return render_template('filmes.html',filmes=dados_json)
+@app.route('/filmes/<propriedade>')
+def listar_filmes(propriedade):
+    return render_template('filmes.html',filmes=list_filmes(propriedade))
