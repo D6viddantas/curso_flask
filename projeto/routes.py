@@ -1,30 +1,10 @@
+from projeto import app
 from flask import Flask,render_template,request
-from list_filmes import list_filmes
-from flask_sqlalchemy import SQLAlchemy
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///livros.sqlite3'
-
-db = SQLAlchemy()
-db.init_app(app)
-
-
-class Livro(db.Model):
-    id = db.Column(db.Integer,primary_key=True)
-    nome = db.Column(db.String(50))
-    descricao = db.Column(db.String(100))
-    valor = db.Column(db.Integer)
-
-    def __init__(self,nome,descricao,valor):
-        self.nome = nome
-        self.descricao = descricao
-        self.valor = valor
-with app.app_context():
-    db.create_all()
+from projeto.models import Livro
+from projeto.list_filmes import list_filmes
 
 conteudos = []
-
-registros = {'teste:':123}
+registros = {}
 
 @app.route('/',methods=['GET','POST'])
 def principal():
@@ -32,7 +12,7 @@ def principal():
         if request.form.get('conteudo'):
             conteudos.append(request.form.get('conteudo'))
     return render_template('index.html',
-                        conteudos=conteudos
+                        conteudos=conteudos,
                            )
 
 @app.route('/sobre')
