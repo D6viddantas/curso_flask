@@ -1,6 +1,27 @@
 from flask import Flask,render_template,request
 from list_filmes import list_filmes
+from flask_sqlalchemy import SQLAlchemy
+
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///livros.sqlite3'
+
+db = SQLAlchemy()
+db.init_app(app)
+
+
+class Livro(db.Model):
+    id = db.Column(db.Integer,primary_key=True)
+    nome = db.Column(db.String(50))
+    descricao = db.Column(db.String(100))
+    valor = db.Column(db.Integer)
+
+    def __init__(self,nome,descricao,valor):
+        self.nome = nome
+        self.descricao = descricao
+        self.valor = valor
+with app.app_context():
+    db.create_all()
+
 conteudos = []
 
 registros = {'teste:':123}
@@ -30,3 +51,12 @@ def diario():
 @app.route('/filmes/<propriedade>')
 def listar_filmes(propriedade):
     return render_template('filmes.html',filmes=list_filmes(propriedade))
+
+@app.route('/livros')
+def lista_livros():
+    livros = Livro.query.all()
+    print(f'livros:{livros}')
+    return render_template(
+        'livros.html',
+        livros=Livro.query.all()
+    )

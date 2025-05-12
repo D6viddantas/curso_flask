@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h2 class="text-center"Lista de Livros></h2>
+    <hr>
+    <br><br>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            {% for livro in livros%}
+                <tr>
+                    {{livro}}
+                    <th>{{ livro.id}}</th>
+                    <th>{{ livro.nome }}</th>
+                    <th>{{ livro.descricao }}</th>
+                    <th>{{ livro.valor }}</th>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
