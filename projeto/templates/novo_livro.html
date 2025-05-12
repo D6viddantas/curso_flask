@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-center">Cadastra Livro</h2>
+<hr>
+<form action="{{url_for('adicionar_livro')}}" class="form-group" method="POST">
+    <label>Nome:</label>
+    <input type="text" name="nome" class="form-control" placeholder="Nome do livro" required>
+    <label>Descrição:</label>
+    <input type="text" name="descricao" class='form-control' placeholder="Descrição do livro,autor,etc" required>
+    <label>Valor:</label>
+    <input type="number" name="valor" class='form-control' placeholder="Valor do livro em R$:" required>
+    <button type='submit' class="btn btn-success">Adicionar</button>
+</form>
+{% endblock content %}
