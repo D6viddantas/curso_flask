@@ -35,7 +35,6 @@ def listar_filmes(propriedade):
 @app.route('/livros')
 def lista_livros():
     livros = Livro.query.all()
-    print(f'livros:{livros}')
     return render_template(
         'livros.html',
         livros=Livro.query.all()
@@ -60,3 +59,23 @@ def adicionar_livro():
         'novo_livro.html',
 
     )
+@app.route('/<int:id>/atualizar_livro',methods=['GET','POST'])
+def atualizar_livro(id):
+    livro_bd = Livro.query.filter_by(id=id).first()
+    if request.method == 'POST':
+        nome = request.form.get('nome')
+        descricao = request.form.get('descricao')
+        valor = request.form.get('valor')
+        Livro.query.filter_by(id=id).update(
+            {
+                'nome':nome,
+                'descricao':descricao,
+                'valor':valor,
+            }
+        )
+        db.session.commit()
+        return redirect(url_for('lista_livros'))
+    return render_template(
+        'atualizar_livro.html',
+        livro = livro_bd
+        )

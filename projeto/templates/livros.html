@@ -2,9 +2,10 @@
 
 
 {% block content %}
-    <h2 class="text-center"Lista de Livros></h2>
+    <h2 class="text-center">Lista de Livros</h2>
     <hr>
     <br><br>
+    <a href='{{url_for('adicionar_livro')}}' class='btn btn-secondary'>Adicionar</a>
     <table class="table table-bordered table-hover">
         <thead class="table-dark">
             <tr>
@@ -12,17 +13,19 @@
                 <th>Nome</th>
                 <th>Descrição</th>
                 <th>Valor</th>
+                <th>Ações</th>
             </tr>
             
         </thead>
         <tbody>
             {% for livro in livros%}
                 <tr>
-                    {{livro}}
                     <th>{{ livro.id}}</th>
                     <th>{{ livro.nome }}</th>
                     <th>{{ livro.descricao }}</th>
                     <th>{{ livro.valor }}</th>
+                    <th>
+                        <a href='{{livro.id}}/atualizar_livro' class='btn btn-secondary bt-xs'>Editar</a>
                 </tr>
             {% endfor %}
         </tbody>
