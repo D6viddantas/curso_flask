@@ -32,4 +32,14 @@
             {% endfor %}
         </tbody>
     </table>
+{% if livros.has_prev %}
+    <a href='{{url_for('lista_livros',page=livros.prev_num)}}'>Livros Anteriores</a>
+{% else %}
+Livros listados
+{% endif %}
+{% if livros.has_next %}
+    <a href='{{url_for('lista_livros',page=livros.next_num)}}'>Proximos Livros</a>
+{% else %}
+Livros listados
+{% endif %}
 {% endblock content %}
