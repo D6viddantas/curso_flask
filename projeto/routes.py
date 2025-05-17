@@ -79,3 +79,10 @@ def atualizar_livro(id):
         'atualizar_livro.html',
         livro = livro_bd
         )
+
+@app.route('/<int:id>/excluir_livro')
+def excluir_livroid(id):
+    livro_bd = Livro.query.filter_by(id=id).first()
+    db.session.delete(livro_bd)
+    db.session.commit()
+    return redirect(url_for('lista_livros'))
